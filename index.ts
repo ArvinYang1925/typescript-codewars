@@ -120,3 +120,82 @@ console.log(`isIsogram2("aba"): ${isIsogram2("aba")}`); // Expected: false
 console.log(`isIsogram2("moOse"): ${isIsogram2("moOse")}`); // Expected: false
 console.log(`isIsogram2(""): ${isIsogram2("")}`); // Expected: true
 console.log(`isIsogram2("isogram"): ${isIsogram2("isogram")}`); // Expected: true
+
+/**
+ * Codewars Challenge: Beginner Series #3 Sum of Numbers (7 kyu)
+ *
+ * Problem Description:
+ * Given two integers a and b, which can be positive or negative, find the sum of all the integers
+ * between and including them and return it. If the two numbers are equal return a or b.
+ *
+ * Note: a and b are not ordered!
+ *
+ * Examples:
+ * - getSum(1, 0) → 1   (1 + 0 = 1)
+ * - getSum(1, 2) → 3   (1 + 2 = 3)
+ * - getSum(0, 1) → 1   (0 + 1 = 1)
+ * - getSum(1, 1) → 1   (just 1)
+ * - getSum(-1, 0) → -1 (-1 + 0 = -1)
+ * - getSum(-1, 2) → 2  (-1 + 0 + 1 + 2 = 2)
+ *
+ * Link: https://www.codewars.com/kata/55f2b110f61eb01779000053
+ */
+
+/**
+ * Calculates the sum of all integers between two numbers (inclusive)
+ * Solution 1: Using a loop to iterate through all numbers
+ * @param a - First integer
+ * @param b - Second integer
+ * @returns Sum of all integers between a and b (inclusive)
+ */
+export function getSum(a: number, b: number): number {
+  if (a === b) {
+    return a;
+  }
+
+  const start = Math.min(a, b);
+  const end = Math.max(a, b);
+  let total = 0;
+
+  for (let i = start; i <= end; i++) {
+    total += i;
+  }
+
+  return total;
+}
+
+/**
+ * Calculates the sum of all integers between two numbers (inclusive)
+ * Solution 2: Using arithmetic sequence formula for better performance
+ * @param a - First integer
+ * @param b - Second integer
+ * @returns Sum of all integers between a and b (inclusive)
+ * @description Uses the formula: sum = (first + last) * count / 2
+ *              where count = last - first + 1
+ */
+export function getSum2(a: number, b: number): number {
+  if (a === b) return a;
+
+  const start = Math.min(a, b);
+  const end = Math.max(a, b);
+
+  // Arithmetic sequence sum formula: (first + last) * count / 2
+  return ((start + end) * (end - start + 1)) / 2;
+}
+
+// Test cases
+console.log("\nTesting getSum function (Solution 1 - Loop approach):");
+console.log(`getSum(1, 0): ${getSum(1, 0)}`); // Expected: 1
+console.log(`getSum(1, 2): ${getSum(1, 2)}`); // Expected: 3
+console.log(`getSum(0, 1): ${getSum(0, 1)}`); // Expected: 1
+console.log(`getSum(1, 1): ${getSum(1, 1)}`); // Expected: 1
+console.log(`getSum(-1, 0): ${getSum(-1, 0)}`); // Expected: -1
+console.log(`getSum(-1, 2): ${getSum(-1, 2)}`); // Expected: 2
+
+console.log("\nTesting getSum2 function (Solution 2 - Formula approach):");
+console.log(`getSum2(1, 0): ${getSum2(1, 0)}`); // Expected: 1
+console.log(`getSum2(1, 2): ${getSum2(1, 2)}`); // Expected: 3
+console.log(`getSum2(0, 1): ${getSum2(0, 1)}`); // Expected: 1
+console.log(`getSum2(1, 1): ${getSum2(1, 1)}`); // Expected: 1
+console.log(`getSum2(-1, 0): ${getSum2(-1, 0)}`); // Expected: -1
+console.log(`getSum2(-1, 2): ${getSum2(-1, 2)}`); // Expected: 2
